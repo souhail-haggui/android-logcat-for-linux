@@ -17,11 +17,11 @@ define shcmd-makeclean
 endef
 
 define shcmd-makerm
-	rm -rf output
+	rm -rf $(BUILD_DIR) 
 endef
 
 .PHONY: all clean rm pre
-all: 
+all: pre 
 	$(call shcmd-make)
 
 clean:
