@@ -455,12 +455,12 @@ ssize_t logger_aio_write(struct kiocb *iocb, struct iov_iter *iov_it)
 	struct logger_log *log = file_get_log(iocb->ki_filp);
 	size_t orig = log->w_off;
 	struct logger_entry header;
-	struct timespec now;
+	struct timespec64 now;
 	ssize_t ret = 0;
 	unsigned long nr_segs = iov_it->nr_segs;
 	const struct iovec *iov = iov_it->iov;
 
-	now = current_kernel_time();
+	ktime_get_coarse_real_ts64(&now);
 
 	header.pid = current->tgid;
 	header.tid = current->pid;
@@ -795,3 +795,4 @@ out:
 	return ret;
 }
 device_initcall(logger_init);
+MODULE_LICENSE("GPL");

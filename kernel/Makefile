@@ -29,5 +29,5 @@ modules:
 
 .PHONY: clean
 clean:
-	rm -rf deps.h *.o *.ko *.mod.c *.symvers *.order .*.cmd .tmp_versions .cache.mk
+	rm -rf deps.h *.o *.ko *.mod *.mod.c *.symvers *.order .*.cmd .tmp_versions .cache.mk
 
