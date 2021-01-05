@@ -1,4 +1,4 @@
-/* //device/libs/cutils/logprint.c
+/* //device/libs/log/logprint.c
 **
 ** Copyright 2006, The Android Open Source Project
 **
@@ -26,8 +26,8 @@
 #include <assert.h>
 #include <arpa/inet.h>
 
-#include <cutils/logd.h>
-#include <cutils/logprint.h>
+#include <log/logd.h>
+#include <log/logprint.h>
 
 typedef struct FilterInfo_t {
     char *mTag;

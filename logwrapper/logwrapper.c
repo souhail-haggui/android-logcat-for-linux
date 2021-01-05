@@ -26,8 +26,8 @@
 #include <libgen.h>
 #include <signal.h>
 
-#include "private/android_filesystem_config.h"
-#include "cutils/log.h"
+#include "log/log.h"
+
 static pid_t child_pid = (pid_t)-1;
 
 void fatal(const char *msg) {
