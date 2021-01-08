@@ -1,6 +1,6 @@
 CPUS=$(shell cat /proc/cpuinfo | grep "processor" | wc -l)
 PWD=$(shell pwd)
-BUILD_DIR=$(PWD)/output
+BUILD_DIR=$(PWD)/build
 MAKE_OPT=
 
 define shcmd-makepre
