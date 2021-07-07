@@ -7,9 +7,9 @@ add_definitions (
 )
 
 add_definitions('-DLOGGER_LOG_MAIN="log_main"')
-add_definitions('-DLOGGER_LOG_RADIO="log_radio"')
-add_definitions('-DLOGGER_LOG_EVENTS="log_events"')
-add_definitions('-DLOGGER_LOG_SYSTEM="log_system"')
+#add_definitions('-DLOGGER_LOG_RADIO="log_radio"')
+#add_definitions('-DLOGGER_LOG_EVENTS="log_events"')
+#add_definitions('-DLOGGER_LOG_SYSTEM="log_system"')
 
 include_directories (${PROJECT_SOURCE_DIR}/include)
 file(GLOB SOURCES "${PROJECT_SOURCE_DIR}/liblog/*.c")

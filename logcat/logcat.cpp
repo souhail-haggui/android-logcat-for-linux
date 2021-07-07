@@ -664,11 +664,6 @@ int main(int argc, char **argv)
         int accessmode =
                   (mode & O_RDONLY) ? R_OK : 0
                 | (mode & O_WRONLY) ? W_OK : 0;
-        // only add this if it's available
-        if (0 == access("/dev/" LOGGER_LOG_SYSTEM, accessmode)) {
-            devices->next = new log_device_t(strdup("/dev/" LOGGER_LOG_SYSTEM), false, 's');
-            android::g_devCount++;
-        }
     }
 
     if (android::g_logRotateSizeKBytes != 0 
