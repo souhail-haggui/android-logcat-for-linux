@@ -869,9 +869,15 @@ char *android_log_formatLogLine (
             suffixLen = 1;
             break;
         case FORMAT_TIME:
+#if 0
             prefixLen = snprintf(prefixBuf, sizeof(prefixBuf),
                 "%s.%03ld %c/%-8s(%5d): ", timeBuf, entry->tv_nsec / 1000000,
                 priChar, entry->tag, entry->pid);
+#else
+            prefixLen = snprintf(prefixBuf, sizeof(prefixBuf),
+                "<%5ld.%03ld000> %c/%-8s(%5d): ",  entry->tv_sec, entry->tv_nsec / 1000000,
+                priChar, entry->tag, entry->pid);
+#endif
             strcpy(suffixBuf, "\n");
             suffixLen = 1;
             break;

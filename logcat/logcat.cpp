@@ -404,7 +404,7 @@ static void show_help(const char *cmd)
                     "  -v <format>     Sets the log print format, where <format> is one of:\n\n"
                     "                  brief process tag thread raw time threadtime long\n\n"
                     "  -c              clear (flush) the entire log and exit\n"
-                    "  -d              dump the log and then exit (don't block)\n"
+                    "  -d              dump the log and block\n"
                     "  -t <count>      print only the most recent <count> lines (implies -d)\n"
                     "  -g              get the size of the log's ring buffer and exit\n"
                     "  -b <buffer>     Request alternate ring buffer, 'main', 'system', 'radio'\n"
@@ -499,7 +499,7 @@ int main(int argc, char **argv)
             break;
 
             case 'd':
-                g_nonblock = true;
+                g_nonblock = false;
             break;
 
             case 't':
