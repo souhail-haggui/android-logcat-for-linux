@@ -68,6 +68,12 @@ void parent(const char *tag, int seg_fault_on_exit, int parent_read) {
     char *btag = basename(tag);
     if (!btag) btag = (char*) tag;
 
+    int console_fd = open("/dev/console", O_RDWR);
+    if (console_fd < 0) {
+		printf("can't open /dev/console\n");
+        fatal("Problem with console\n");
+    }
+
     while ((sz = read(parent_read, &buffer[b], sizeof(buffer) - 1 - b)) > 0) {
 
         sz += b;
@@ -78,6 +84,7 @@ void parent(const char *tag, int seg_fault_on_exit, int parent_read) {
             } else if (buffer[b] == '\n') {
                 buffer[b] = '\0';
                 ALOG(LOG_INFO, btag, "%s", &buffer[a]);
+                dprintf(console_fd, "%s\n", &buffer[a]);
                 a = b + 1;
             }
         }
@@ -86,6 +93,7 @@ void parent(const char *tag, int seg_fault_on_exit, int parent_read) {
             // buffer is full, flush
             buffer[b] = '\0';
             ALOG(LOG_INFO, btag, "%s", &buffer[a]);
+            dprintf(console_fd, "%s\n", &buffer[a]);
             b = 0;
         } else if (a != b) {
             // Keep left-overs
@@ -102,6 +110,7 @@ void parent(const char *tag, int seg_fault_on_exit, int parent_read) {
     if (a != b) {
         buffer[b] = '\0';
         ALOG(LOG_INFO, btag, "%s", &buffer[a]);
+        dprintf(console_fd, "%s\n", &buffer[a]);
     }
     status = 0xAAAA;
     if (wait(&status) != -1) {  // Wait for child

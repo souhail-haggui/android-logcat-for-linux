@@ -24,7 +24,7 @@
 #define DEFAULT_MAX_ROTATED_LOGS 4
 
 static AndroidLogFormat * g_logformat;
-static bool g_nonblock = false;
+static bool g_nonblock = true;
 static int g_tail_lines = 0;
 
 /* logd prefixes records with a length field */
