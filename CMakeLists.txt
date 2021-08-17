@@ -26,3 +26,5 @@ target_link_libraries(logcat log)
 
 add_executable(logwrapper  ${PROJECT_SOURCE_DIR}/logwrapper/logwrapper.c)
 target_link_libraries(logwrapper log)
+
+include(cross.cmake)

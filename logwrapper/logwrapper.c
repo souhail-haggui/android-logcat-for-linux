@@ -57,6 +57,18 @@ void forward_signal(int sigid) {
     }
 }
 
+#define REBOOT_WAIT_SECONDS (1)
+
+void post_process(void)
+{
+	sleep(REBOOT_WAIT_SECONDS);
+
+#if 1
+	ALOG(LOG_INFO, "logwrapper", "this is wrppaer post process, reboot\n");
+	system("reboot");
+#else
+#endif
+}
 void parent(const char *tag, int seg_fault_on_exit, int parent_read) {
     int status;
     char buffer[4096];
@@ -118,6 +130,7 @@ void parent(const char *tag, int seg_fault_on_exit, int parent_read) {
             ALOG(LOG_INFO, "logwrapper", "%s terminated by exit(%d)", tag,
                     WEXITSTATUS(status));
             if (!seg_fault_on_exit) {
+				post_process();
                 exit(WEXITSTATUS(status));
             }
         } else if (WIFSIGNALED(status))
@@ -131,6 +144,8 @@ void parent(const char *tag, int seg_fault_on_exit, int parent_read) {
                 strerror(errno), errno);
     if (seg_fault_on_exit)
         *(int *)status = 0;  // causes SIGSEGV with fault_address = status
+	
+	post_process();
 }
 
 void child(int argc, char* argv[]) {
