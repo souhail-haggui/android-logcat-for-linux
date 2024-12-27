@@ -37,7 +37,6 @@
 #endif
 #include <stdarg.h>
 
-#include <log/uio.h>
 #include <log/logd.h>
 
 #ifdef __cplusplus

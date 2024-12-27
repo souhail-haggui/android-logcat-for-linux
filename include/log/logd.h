@@ -88,7 +88,6 @@ void __android_log_assert(const char *cond, const char *tag,
 #ifdef HAVE_PTHREADS
 #include <pthread.h>
 #endif
-#include <log/uio.h>
 #include <stdarg.h>
 
 #ifdef __cplusplus

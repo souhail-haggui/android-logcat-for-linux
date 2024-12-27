@@ -858,7 +858,7 @@ char *android_log_formatLogLine (
             break;
         case FORMAT_THREAD:
             prefixLen = snprintf(prefixBuf, sizeof(prefixBuf),
-                "%c(%5d:%p) ", priChar, entry->pid, (void*)entry->tid);
+                "%c(%5d:%d) ", priChar, entry->pid, entry->tid);
             strcpy(suffixBuf, "\n");
             suffixLen = 1;
             break;
@@ -890,9 +890,9 @@ char *android_log_formatLogLine (
             break;
         case FORMAT_LONG:
             prefixLen = snprintf(prefixBuf, sizeof(prefixBuf),
-                "[ %s.%03ld %5d:%p %c/%-8s ]\n",
+                "[ %s.%03ld %5d:%d %c/%-8s ]\n",
                 timeBuf, entry->tv_nsec / 1000000, entry->pid,
-                (void*)entry->tid, priChar, entry->tag);
+                entry->tid, priChar, entry->tag);
             strcpy(suffixBuf, "\n\n");
             suffixLen = 2;
             prefixSuffixIsHeaderFooter = 1;

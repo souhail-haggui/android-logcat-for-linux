@@ -1,3 +1,0 @@
-#!/bin/sh
-
-(logcat -v time & dmesg) | sort -k 2

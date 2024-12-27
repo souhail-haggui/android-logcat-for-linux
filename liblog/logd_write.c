@@ -24,7 +24,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdarg.h>
-
+#include <sys/uio.h>
 #include <log/logger.h>
 #include <log/logd.h>
 #include <log/log.h>

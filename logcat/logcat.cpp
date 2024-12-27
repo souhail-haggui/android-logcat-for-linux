@@ -118,12 +118,12 @@ static void rotateLogs()
     for (int i = g_maxRotatedLogs ; i > 0 ; i--) {
         char *file0, *file1;
 
-        asprintf(&file1, "%s.%d", g_outputFileName, i);
+        err = asprintf(&file1, "%s.%d", g_outputFileName, i);
 
         if (i - 1 == 0) {
-            asprintf(&file0, "%s", g_outputFileName);
+            err = asprintf(&file0, "%s", g_outputFileName);
         } else {
-            asprintf(&file0, "%s.%d", g_outputFileName, i - 1);
+            err = asprintf(&file0, "%s.%d", g_outputFileName, i - 1);
         }
 
         err = rename (file0, file1);
@@ -297,7 +297,7 @@ static void readLogLines(log_device_t* devices)
                         exit(EXIT_FAILURE);
                     }
                     else if (entry->entry.len != ret - sizeof(struct logger_entry)) {
-                        fprintf(stderr, "read: unexpected length. Expected %d, got %d\n",
+                        fprintf(stderr, "read: unexpected length. Expected %d, got %ld\n",
                                 entry->entry.len, ret - sizeof(struct logger_entry));
                         exit(EXIT_FAILURE);
                     }
